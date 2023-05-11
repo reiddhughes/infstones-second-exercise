@@ -181,7 +181,7 @@ resource "aws_launch_template" "private" {
     resource_type = "instance"
 
     tags = {
-      Name = "is-${var.user_name}-pvt"
+      Name = "is-${var.user_name}-ec2-pvt-01"
     }
   }
 
@@ -205,4 +205,6 @@ resource "aws_instance" "pvt-01" {
   launch_template {
     id = aws_launch_template.private.id
   }
+
+  depends_on = [aws_route_table_association.private]
 }
